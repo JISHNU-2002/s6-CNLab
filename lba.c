@@ -21,7 +21,12 @@ int main(){
             printf("dropped [%d] bytes from [%d] input\nbucket area is full [%d]/[%d]\n",drop,input[i],bsize,bsize);
             store = bsize;        
         }
-        store = store - orate;
+
+        if(store >= input[i]){
+            store = store - orate;
+        }else{
+            store = 0;
+        }
         printf("[%d] bytes left in bucket after transmition of [%d] input\n",store,input[i]);
     }
     return 0;
