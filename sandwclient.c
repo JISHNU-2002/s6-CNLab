@@ -1,10 +1,9 @@
+//stop and wait sliding window protocol using TCP
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
 #include<math.h>
-#include<sys/types.h>
-#include<sys/socket.h>
 #include<netinet/in.h>
 #include<arpa/inet.h>
 
@@ -25,13 +24,13 @@ int main(){
     server.sin_port = 5000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    printf("[+]CLIENT Ready\n");
+    printf("[+]Client ready\n");
     client_sock = connect(server_sock,(struct sockaddr*)&server,sizeof(server));
     if(client_sock < 0){
-        printf("[-]CLIENT connection error\n");
+        printf("[-]Client connection error\n");
         exit(0);
     }else{
-        printf("[+]CLIENT connection successfull\n");
+        printf("[+]Client connection successfull\n");
     }
 
     int frame[50],m,t,ack,i;
