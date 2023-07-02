@@ -35,6 +35,7 @@ int main(){
     printf("[+]Server ready , waiting for Client\n");
     n = sizeof(client);
 
+    //only for messaging server-client
     for(;;){
         recvfrom(server_sock,buf,sizeof(buf),0,(struct sockaddr*)&client,&n);
         if(strcmp(buf,"end")==0){
@@ -49,7 +50,8 @@ int main(){
             break;
         }
     }
-    
+
+    //for calculating factorial of a number sent by client
     recvfrom(server_sock,&num,sizeof(num),0,(struct sockaddr*)&client,&n);
     if(num == 0){
         fact = 1;
