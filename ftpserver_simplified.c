@@ -56,9 +56,9 @@ int main(){
     }
     
     while(1){
-        int n = recv(a,buf,max,0);
-        //printf("value of n = %d\n",n);
-        if(n <= 0){
+        int m = recv(a,buf,max,0);
+        //printf("value of m = %d\n",m);
+        if(m <= 0){
             printf("\n[-]end of file / file transfer completed\n");
             break;
         }
