@@ -2,8 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
-#include<sys/types.h>
-#include<sys/socket.h>
 #include<arpa/inet.h>
 #include<netinet/in.h>
 #define max 1024
@@ -30,15 +28,16 @@ void receive_file(int sock){
     }
     return;
 }
+
 int main(){
     struct sockaddr_in server,client;
     int s_sock = socket(AF_INET,SOCK_STREAM,0);
     if(s_sock < 0){
         printf("[-]TCP socket error\n");
         exit(0);
-    }else{
-        printf("[+]TCP socket created\n");
     }
+    printf("[+]TCP socket created\n");
+        
     server.sin_family = AF_INET;
     server.sin_port = 8000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -47,26 +46,23 @@ int main(){
     if(b < 0){
         printf("[-]bind error\n");
         exit(0);
-    }else{
-        printf("[+]bind success\n");
     }
+    printf("[+]bind success\n");
     
     int l = listen(s_sock,10);
     if(l < 0){
         printf("[-]server not listening\n");
         exit(0);
-    }else{
-        printf("[+]server listening\n");
     }
+    printf("[+]server listening\n");
 
     int n = sizeof(client);
     int c_sock = accept(s_sock,(struct sockaddr*)&client,&n);
     if(c_sock < 0){
         printf("[-]client not accepted\n");
         exit(0);
-    }else{
-        printf("[+]client accepted\n\n");
     }
+    printf("[+]client accepted\n\n");
     
     receive_file(c_sock);
     printf("\n[+]file transfer complete\n");
