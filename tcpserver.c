@@ -5,7 +5,7 @@
 #include<arpa/inet.h>
 
 int main(){
-    int server_sock,client_sock,b,n;
+    int server_sock,client_sock;
     struct sockaddr_in server,client;
     char buf[1024];
 
@@ -17,12 +17,12 @@ int main(){
         printf("[+]TCP socket created\n");
     }
 
-    memset(&server,'\0',sizeof(server));
+    //memset(&server,'\0',sizeof(server));
     server.sin_family = AF_INET;
     server.sin_port = 2000;
-    server.sin_addr.s_addr = inet_addr("192.168.73.93");
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    b = bind(server_sock,(struct sockaddr*)&server,sizeof(server));
+    int b = bind(server_sock,(struct sockaddr*)&server,sizeof(server));
     if(bind < 0){
         printf("[-]TCP bind error\n");
         exit(0);
@@ -31,8 +31,9 @@ int main(){
     }
 
     listen(server_sock,1);
-    printf("Server listening waiting for CLIENT...\n");
-    n = sizeof(client);
+    printf("[+]Server listening , waiting for CLIENT...\n");
+    
+    int n = sizeof(client);
     client_sock = accept(server_sock,(struct sockaddr*)&client,&n);
     if(client_sock < 0){
         printf("[-]Client connection error\n");
@@ -54,6 +55,7 @@ int main(){
             break;
         }
     }
+    
     close(client_sock);
     printf("[-]Client disconnected...\n");
     close(server_sock);
