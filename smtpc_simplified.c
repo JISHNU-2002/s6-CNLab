@@ -29,11 +29,12 @@ int main(){
 	char mail_from[1024],mail_to[1024],mail_body[1024];
 
 	recv(sockfd,mail_from,1024,0);
-	printf("From : %s\n",mail_from);
 	recv(sockfd,mail_to,1024,0);
-	printf("To: %s\n",mail_to);
 	recv(sockfd,mail_body,1024,0);
-	printf("\n%s\n",mail_body);
+	
+	printf("From : %s\n",mail_from);
+	printf("To: %s\n",mail_to);
+	printf("\n\n%s\n",mail_body);
 
 	close(sockfd);
 	printf("[+]mail recieved , client disconnecting\n");
