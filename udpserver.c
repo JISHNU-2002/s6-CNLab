@@ -12,7 +12,7 @@ int main(){
 
     server_sock = socket(AF_INET,SOCK_DGRAM,0);
     server.sin_family = AF_INET;
-    server.sin_port = 4000;
+    server.sin_port = 3000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     if(server_sock < 0){
