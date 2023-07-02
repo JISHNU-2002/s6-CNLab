@@ -39,7 +39,7 @@ int main(){
     }
 
     while(fgets(buf,max,fp) != NULL){
-        int n = send(sockfd,buf,max,0);
+        send(sockfd,buf,max,0);
         printf("[+]sending data : %s",buf);     
         bzero(buf,max);
     } 
