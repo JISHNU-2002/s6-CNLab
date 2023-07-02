@@ -25,7 +25,8 @@ int main(){
     }
     printf("[+]Client ready\n");
     n = sizeof(server);
-  
+
+    //only for messaging client-server
     for(;;){
         printf("\nclient : ");
         gets(buf);
@@ -41,7 +42,7 @@ int main(){
         printf("server : %s\n",buf);
     }
 
-
+    //send a number to server , to calculate it's factorial
     printf("Enter number to find factorial = ");
     scanf("%d",&num);
     sendto(server_sock,&num,sizeof(num),0,(struct sockaddr*)&server,n);
