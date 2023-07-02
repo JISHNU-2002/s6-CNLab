@@ -2,8 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
-#include<sys/types.h>
-#include<sys/socket.h>
 #include<arpa/inet.h>
 #include<netinet/in.h>
 #define max 1024
@@ -37,9 +35,9 @@ int main(){
     if(s_sock < 0){
         printf("[-]TCP socket error\n");
         exit(0);
-    }else{
-        printf("[+]TCP socket created\n");
     }
+    printf("[+]TCP socket created\n");
+    
     server.sin_family = AF_INET;
     server.sin_port = 8000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -49,9 +47,8 @@ int main(){
     if(c_sock < 0){
         printf("[-]client not connected\n");
         exit(0);
-    }else{
-        printf("[+]client connected\n\n");
     }
+    printf("[+]client connected\n\n");
 
     send_file(s_sock);  
     printf("\n\n[+]file transfer success\n");
