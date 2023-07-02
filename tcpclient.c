@@ -21,7 +21,7 @@ int main(){
     server.sin_family = AF_INET;
     server.sin_port = 2000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    printf("Client ready...\n");
+    printf("[+]Client ready...\n");
 
     int n = sizeof(server);
     client_sock = connect(server_sock,(struct sockaddr*)&server,n);
@@ -44,6 +44,7 @@ int main(){
             break;
         printf("server : %s\n",buf);
     }
+    
     close(server_sock);
     printf("[-]Disconnected from Server...\n");
     return 0;
