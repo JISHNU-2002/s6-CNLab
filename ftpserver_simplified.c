@@ -34,7 +34,6 @@ int main(){
         exit(0);
     }else{
         printf("[+]server listening\n");
-
     }
    
     int n = sizeof(client);
