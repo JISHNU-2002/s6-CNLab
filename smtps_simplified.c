@@ -46,28 +46,25 @@ int main(){
 
 	printf("From : ");
 	gets(mail_from);
-	send(a,mail_from,1024,0);
-
 	printf("To : ");
 	gets(mail_to);
-	send(a,mail_to,1024,0);
-
 	printf("\nEnter mail body : \n");
 	while(1){
 		c=getchar();
 		if(c=='$'){
 			mail_body[t]='\0';
 			break;
-		}else if(c=='\0'){
-			continue;
 		}else{
-			mail_body[t++]=c;
+			mail_body[t]=c;
+			t++;
 		}
 	}
+	send(a,mail_from,1024,0);
+	send(a,mail_to,1024,0);
 	send(a,mail_body,1024,0);
 
 	close(sockfd);
 	printf("\n[+}mail send , client disconnected\n");
 
-	return 1;
+	return 0;
 }
