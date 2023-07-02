@@ -59,9 +59,22 @@ int main(){
     }else{
         printf("%s\n",buf);
         bzero(buf,sizeof(buf));
-        strcpy(buf,"MAIL BODY : ");
-        printf("Enter the mail body : ");
-        gets(mail_body);
+        strcpy(buf,"MAIL BODY :\n");
+        printf("Enter the mail body :\n");
+        
+        int t=0;
+        char c;
+        while(1){
+            c = getchar();
+            if(c == '$'){
+                mail_body[t] = '\0';
+                break;
+            }else{
+                mail_body[t] = c;
+                t++;
+            }
+        }
+        
         strcat(buf,mail_body);
         send(server_sock,buf,sizeof(buf),0);
     }
