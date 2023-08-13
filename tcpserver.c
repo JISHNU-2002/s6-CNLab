@@ -23,7 +23,7 @@ int main(){
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     int b = bind(server_sock,(struct sockaddr*)&server,sizeof(server));
-    if(bind < 0){
+    if(b < 0){
         printf("[-]TCP bind error\n");
         exit(0);
     }else{
