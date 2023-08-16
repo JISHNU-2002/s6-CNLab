@@ -22,7 +22,7 @@ int main(){
             store = bsize;        
         }
 
-        if(store >= input[i]){
+        if(store >= orate){
             store = store - orate;
         }else{
             store = 0;
