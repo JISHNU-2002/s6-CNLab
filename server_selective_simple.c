@@ -6,11 +6,11 @@
 #include<arpa/inet.h>
 
 void resend(int ch,int c_sock){
-    char buff2[60] = "resending frame - ";
-    buff2[strlen(buff2)]=(ch)+'0';
-    buff2[strlen(buff2)]='\0';
-    printf("%s \n",buff2);
-    write(c_sock, buff2, sizeof(buff2));
+    char buff[60] = "resending frame - ";
+    buff[strlen(buff)]=(ch)+'0';
+    buff[strlen(buff)]='\0';
+    printf("%s \n",buff);
+    write(c_sock, buff, sizeof(buff));
     usleep(1000);
 }
 
@@ -22,9 +22,10 @@ int main(){
     server.sin_port = 3000;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
     
-    if(bind(sock_fd, (struct sockaddr*)&server, sizeof(server)) == -1) {
+    int b = bind(sock_fd, (struct sockaddr*)&server, sizeof(server));
+    if(b < 0){
         printf("Binding failed\n");
-        return 0;
+        exit(0);
     }
     printf("\tServer Up\n Selective repeat scheme\n\n");
 
@@ -32,21 +33,18 @@ int main(){
     int n = sizeof(client);
     int c_sock = accept(sock_fd, (struct sockaddr*)&client, &n);
 
-    int rv1,rv2,rv3,tot=0,flag=0;
-    char buff[50],buff2[50];
-    struct timeval timeout1,timeout2,timeout3;
-    time_t t1,t2;
-    fd_set set1,set2,set3;
+    int rv1,tot=0,flag=0;
+    char buff[50];
+    struct timeval timeout1;
+    fd_set set1;
 
     while(tot<9){
         int toti=tot;
         for(int j=(0+toti);j<(3+toti);j++){
             bzero(buff,sizeof(buff));
-            bzero(buff2,sizeof(buff2));
-            buff2[strlen(buff2)]=(j)+'0';
-            buff2[strlen(buff2)]='\0';
-            printf("frame send : %s \n",buff2);
-            write(c_sock, buff2, sizeof(buff2));
+            buff[strlen(buff)]=(j)+'0';
+            printf("frame send : %s \n",buff);
+            write(c_sock, buff, sizeof(buff));
             usleep(1000);
         }
         for(int k=0+toti;k<(toti+3);k++){
