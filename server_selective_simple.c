@@ -8,7 +8,6 @@
 void resend(int ch,int c_sock){
     char buff[60] = "resending frame - ";
     buff[strlen(buff)]=(ch)+'0';
-    buff[strlen(buff)]='\0';
     printf("%s \n",buff);
     write(c_sock, buff, sizeof(buff));
     usleep(1000);
