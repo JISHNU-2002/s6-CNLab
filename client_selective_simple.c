@@ -6,7 +6,7 @@
 #include<arpa/inet.h>
 
 int isfaulty(){ 
-    int d=rand()%4;
+    int d = rand()%4;
     return (d>2);
 }
 
@@ -21,8 +21,8 @@ int main(){
     connect(sock_fd, (struct sockaddr*)&server, sizeof(server));
 
     printf("\n\tClient -with individual acknowledgement scheme\n\n");
-    char msg1[50]="positive ack recieved for frame - ";
-    char msg3[50]="negative ack recieved for frame - ";
+    char msg1[50] = "positive ack recieved for frame - ";
+    char msg3[50] = "negative ack recieved for frame - ";
     char msg2[50];
     char buff[100];
     int count=-1,flag=1;
@@ -31,7 +31,7 @@ int main(){
         bzero(buff,sizeof(buff));
         bzero(msg2,sizeof(msg2));
 
-        if(count==7&&flag==1){
+        if(count==7 && flag==1){
             printf("Timeout occured\n"); //simulate loss
             flag=0;
             read(sock_fd,buff,sizeof(buff));
@@ -39,9 +39,9 @@ int main(){
         }
 
         read(sock_fd, buff, sizeof(buff));
-        char i=buff[strlen(buff)-1];
+        char i = buff[strlen(buff)-1];
         printf("server msg : %s \n",buff);
-        int isfault=isfaulty();
+        int isfault = isfaulty();
         printf("error status : %d \n",isfault);
         
         if(isfault){
