@@ -3,7 +3,6 @@
 #include<string.h>
 #include<unistd.h>
 #include<arpa/inet.h>
-#define BUF_SIZE 256
 
 int main(){
     struct sockaddr_in server,client;
