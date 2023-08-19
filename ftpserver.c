@@ -24,7 +24,6 @@ void receive_file(int sock){
         }
         printf("[+]receiving data : %s",buf);
         fprintf(fp,"%s",buf);
-        bzero(buf,max);
     }
     return;
 }
