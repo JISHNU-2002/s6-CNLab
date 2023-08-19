@@ -41,7 +41,6 @@ int main(){
     while(fgets(buf,max,fp) != NULL){
         send(sockfd,buf,max,0);
         printf("[+]sending data : %s",buf);     
-        bzero(buf,max);
     } 
     printf("\n\n[+]file transfer success\n");
 
