@@ -56,14 +56,12 @@ int main(){
     
     while(1){
         int m = recv(a,buf,max,0);
-        //printf("value of m = %d\n",m);
-        if(m <= 0){
+        if(m == 0){
             printf("\n[-]end of file / file transfer completed\n");
             break;
         }
         printf("[+]receiving data : %s",buf);
         fprintf(fp,"%s",buf);
-        bzero(buf,max);
     }
     printf("\n[+]file transfer complete\n");
 
