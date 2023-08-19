@@ -18,13 +18,8 @@ void send_file(int sock){
     }
 
     while(fgets(buf,max,fp) != NULL){
-        int n = send(sock,buf,max,0);
-        if(n < 0){
-            printf("[-]error in sending file\n");
-            exit(0);
-        }
+        send(sock,buf,max,0);
         printf("[+]sending data : %s",buf);     
-        bzero(buf,max);
     }
     return;
 }
