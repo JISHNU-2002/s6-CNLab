@@ -13,7 +13,7 @@ int main(){
     for(i=0;i<n;i++){
         for(j=0;j<n;j++){
             scanf("%d",&costmatrix[i][j]);
-            costmatrix[i][i] = 0;
+            //costmatrix[i][i] = 0;
             rtab[i].to[j] = j;
             rtab[i].d[j] = costmatrix[i][j];
         }
